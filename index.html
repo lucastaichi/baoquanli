@@ -256,9 +256,19 @@
     margin-bottom: 72px;
     padding-bottom: 72px;
     border-bottom: 1px solid var(--line);
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+
+  .practice-block.animate {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.7s, transform 0.7s;
+  }
+
+  .practice-block.animate.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .practice-block:last-child {
@@ -690,26 +700,23 @@
 </section>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll reveal for practice blocks
+  // Scroll reveal: only animate blocks that start below the fold
   const blocks = document.querySelectorAll('.practice-block');
+  blocks.forEach(b => {
+    const rect = b.getBoundingClientRect();
+    if (rect.top > window.innerHeight) {
+      b.classList.add('animate');
+    }
+  });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.1 });
   blocks.forEach(b => observer.observe(b));
-
-  // Also make all blocks visible on load if already in viewport
-  window.addEventListener('load', () => {
-    blocks.forEach(b => {
-      const rect = b.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
-        b.classList.add('visible');
-      }
-    });
-  });
 
   // Fade in sobre text
   const sobreText = document.querySelector('.sobre-text');
