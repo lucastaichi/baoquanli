@@ -693,13 +693,23 @@
   // Scroll reveal for practice blocks
   const blocks = document.querySelectorAll('.practice-block');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 150);
+        entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   blocks.forEach(b => observer.observe(b));
+
+  // Also make all blocks visible on load if already in viewport
+  window.addEventListener('load', () => {
+    blocks.forEach(b => {
+      const rect = b.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        b.classList.add('visible');
+      }
+    });
+  });
 
   // Fade in sobre text
   const sobreText = document.querySelector('.sobre-text');
