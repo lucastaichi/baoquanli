@@ -13,6 +13,48 @@
     --gold: #b8860b;
     --muted: #6b5d4f;
     --line: #c8b89a;
+    --header-bg: transparent;
+  }
+
+  :root.dark {
+    --ink: #e8e0d0;
+    --paper: #141210;
+    --red: #c45050;
+    --gold: #c8960e;
+    --muted: #9a8e80;
+    --line: #3a3028;
+    --header-bg: transparent;
+  }
+
+  /* Dark mode overrides */
+  .dark .info-bar {
+    background: #e8e0d0;
+    color: #1a1410;
+  }
+
+  .dark .info-bar .info-label {
+    color: #8b6914;
+  }
+
+  .dark .info-bar .info-value {
+    color: #1a1410;
+  }
+
+  .dark .info-bar .info-sub {
+    color: rgba(26,20,16,0.6);
+  }
+
+  .dark .info-bar .contact-link {
+    color: #1a1410;
+  }
+
+  .dark .sobre-photo {
+    filter: grayscale(20%) brightness(0.88);
+  }
+
+  .dark .logo-img {
+    filter: invert(85%) sepia(10%) saturate(200%) brightness(90%);
+    opacity: 0.85;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -587,6 +629,46 @@
     }
     .hero-left { padding: 88px 20px 48px; }
   }
+
+  /* ── DARK MODE TOGGLE ── */
+  .theme-toggle {
+    margin-left: auto;
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s, background 0.3s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--ink);
+    transform: rotate(20deg) scale(1.08);
+  }
+
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--ink);
+    transition: fill 0.3s;
+  }
+
+  .icon-moon { display: none; }
+  .icon-sun  { display: block; }
+  .dark .icon-moon { display: block; }
+  .dark .icon-sun  { display: none; }
+
+  
+  /* ── THEME TRANSITION ── */
+  body { transition: background-color 0.4s; }
+  .info-bar { transition: background-color 0.4s; }
+
 </style>
 </head>
 <body>
@@ -598,6 +680,17 @@
     Bao Quan Li
     <span>Tai Chi · Qigong · Lian Gong</span>
   </div>
+
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+    <!-- Sol (modo claro) -->
+    <svg class="icon-sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 4.354a.75.75 0 0 1 .75.75V7a.75.75 0 0 1-1.5 0V5.104a.75.75 0 0 1 .75-.75zM12 17a.75.75 0 0 1 .75.75V19.896a.75.75 0 0 1-1.5 0V17.75A.75.75 0 0 1 12 17zm7.646-5a.75.75 0 0 1-.75.75H16.9a.75.75 0 0 1 0-1.5h1.996a.75.75 0 0 1 .75.75zM7 12a.75.75 0 0 1-.75.75H4.354a.75.75 0 0 1 0-1.5H6.25A.75.75 0 0 1 7 12zm9.243-5.243a.75.75 0 0 1 0 1.06l-1.412 1.413a.75.75 0 1 1-1.06-1.061l1.411-1.412a.75.75 0 0 1 1.061 0zM9.17 15.89a.75.75 0 0 1 0 1.061l-1.413 1.412a.75.75 0 1 1-1.06-1.06l1.412-1.413a.75.75 0 0 1 1.06 0zM18.364 16.95a.75.75 0 0 1-1.06 0l-1.413-1.412a.75.75 0 1 1 1.061-1.061l1.412 1.412a.75.75 0 0 1 0 1.061zM8.232 8.172a.75.75 0 0 1-1.061 0L5.758 6.76a.75.75 0 0 1 1.061-1.06l1.413 1.411a.75.75 0 0 1 0 1.061zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
+    </svg>
+    <!-- Lua (modo escuro) -->
+    <svg class="icon-moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+    </svg>
+  </button>
 </header>
 
 <!-- HERO -->
@@ -716,7 +809,9 @@
   </div>
 </section>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+  
+</script><script>
   // Scroll reveal: only animate blocks that start below the fold
   const blocks = document.querySelectorAll('.practice-block');
   blocks.forEach(b => {
@@ -742,4 +837,27 @@
     sobreText.style.transform = 'translateY(24px)';
     sobreText.style.transition = 'opacity 0.9s 0.2s, transform 0.9s 0.2s';
     const sobreObs = new IntersectionObserver((entries) => {
-      entries.f
+      entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        sobreText.style.opacity = '1';
+        sobreText.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  sobreObs.observe(sobreText);
+  }
+</script>
+
+<script>
+  function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  }
+  (function() {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  })();
+</script>
+</body>
+</html>
