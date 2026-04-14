@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tao | A Grande Via - Princípios Cosmológicos do Taoísmo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8f6f1;
+            --text-color: #2a2a2a;
+            --accent-color: #8b7355;
+            --subtle-color: #e5e2d8;
+            --yin-color: #2a2a2a;
+            --yang-color: #f8f6f1;
+            --line-color: #d4d0c5;
+            --wood: #5a7c5a;
+            --fire: #c45c48;
+            --earth: #b8956a;
+            --metal: #9a9a9a;
+            --water: #3d5a6c;
+            --text-light: #666666;
+            --text-muted: #777777;
+            --card-bg: rgba(255,255,255,0.4);
+            --diagram-bg: rgba(255,255,255,0.3);
+            --quote-bg: rgba(255,255,255,0.3);
+            --insight-bg: rgba(139,115,85,0.08);
+            --header-bg-end: #f0ede4;
+            --practice-bg-start: #f0ede4;
+            --table-header-bg: rgba(0,0,0,0.02);
+            --table-hover-bg: rgba(0,0,0,0.01);
+            --svg-stroke: #2a2a2a;
+            --svg-text: #2a2a2a;
+            --svg-text-inv: #f8f6f1;
+            --svg-taiji-dark: #2a2a2a;
+            --svg-taiji-light: #f8f6f1;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f0e0b;
+            --text-color: #e8e4da;
+            --accent-color: #c9a87a;
+            --subtle-color: #2a2720;
+            --yin-color: #e8e4da;
+            --yang-color: #0f0e0b;
+            --line-color: #3a3730;
+            --wood: #7ab87a;
+            --fire: #e07060;
+            --earth: #d4a87a;
+            --metal: #c0c0c0;
+            --water: #5a8aaa;
+            --text-light: #a0998e;
+            --text-muted: #887f74;
+            --card-bg: rgba(255,255,255,0.04);
+            --diagram-bg: rgba(255,255,255,0.03);
+            --quote-bg: rgba(255,255,255,0.04);
+            --insight-bg: rgba(201,168,122,0.08);
+            --header-bg-end: #161410;
+            --practice-bg-start: #161410;
+            --table-header-bg: rgba(255,255,255,0.04);
+            --table-hover-bg: rgba(255,255,255,0.02);
+            --svg-stroke: #e8e4da;
+            --svg-text: #e8e4da;
+            --svg-text-inv: #0f0e0b;
+            --svg-taiji-dark: #e8e4da;
+            --svg-taiji-light: #0f0e0b;
+        }
+
+        /* ── Theme Toggle Button ── */
+        #theme-toggle {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.2rem;
+            z-index: 9999;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--line-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #theme-toggle:hover {
+            box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+            border-color: var(--accent-color);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 18px;
+            letter-spacing: 0.02em;
+        }
+
+        .hanzi {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 400;
+        }
+
+        .pinyin {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.75em;
+            color: var(--accent-color);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 0.2em;
+            display: block;
+        }
+
+        .inline-hanzi {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            vertical-align: middle;
+            margin: 0 0.2em;
+        }
+
+        .inline-hanzi .hanzi-char {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1em;
+            line-height: 1;
+        }
+
+        .inline-hanzi .pinyin-text {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.5em;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(to bottom, var(--bg-color) 0%, var(--header-bg-end) 100%);
+            border-bottom: 1px solid var(--line-color);
+        }
+
+        .taichi-container {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 3rem;
+            animation: slowRotate 60s linear infinite;
+        }
+
+        @keyframes slowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .taichi-container {
+                animation: none;
+            }
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--accent-color);
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background-color: var(--accent-color);
+            margin: 2rem auto;
+        }
+
+        .line-separator {
+            width: 100%;
+            height: 1px;
+            background-color: var(--line-color);
+            margin: 6rem 0;
+        }
+
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        h2 .hanzi {
+            font-size: 0.8em;
+            color: var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 3rem 0 1.5rem;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        h3::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background-color: var(--accent-color);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            hyphens: auto;
+            color: var(--text-color);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .concept-card {
+            border: 1px solid var(--line-color);
+            padding: 2rem;
+            background: var(--card-bg);
+            transition: all 0.4s ease;
+        }
+
+        .concept-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        .concept-card h4 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--diagram-bg);
+            border: 1px solid var(--subtle-color);
+        }
+
+        .bagua-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 3rem 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            #theme-toggle {
+                top: 0.8rem;
+                right: 0.8rem;
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+
+            header {
+                height: auto;
+                min-height: 100svh;
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .taichi-container {
+                width: 140px;
+                height: 140px;
+                margin-bottom: 2rem;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+                letter-spacing: 0.2em;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                letter-spacing: 0.1em;
+                text-align: center;
+            }
+
+            h2 {
+                font-size: 1.7rem;
+                gap: 0.6rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+            }
+
+            section {
+                padding: 0 1.25rem;
+            }
+
+            .line-separator {
+                margin: 3.5rem 0;
+            }
+
+            .concept-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .concept-card {
+                padding: 1.5rem;
+            }
+
+            .bagua-comparison {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .bagua-box {
+                padding: 1.25rem;
+            }
+
+            .diagram-container {
+                padding: 1rem;
+                margin: 2rem 0;
+            }
+
+            .quote {
+                font-size: 1.05rem;
+                padding: 1.5rem 1rem;
+            }
+
+            .insight-box {
+                padding: 1.25rem;
+            }
+
+            .practice-section {
+                padding: 2.5rem 1.25rem;
+                margin: 2.5rem 0;
+            }
+
+            .correspondence-table {
+                font-size: 0.82rem;
+            }
+
+            .correspondence-table th,
+            .correspondence-table td {
+                padding: 0.7rem 0.5rem;
+            }
+
+            footer {
+                padding: 2.5rem 1.25rem;
+                margin-top: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                letter-spacing: 0.12em;
+            }
+
+            h2 {
+                font-size: 1.45rem;
+                flex-direction: column;
+                gap: 0.3rem;
+                align-items: flex-start;
+            }
+
+            h2 .pinyin {
+                font-size: 0.7em;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+                margin: 2rem 0 1rem;
+            }
+
+            .taichi-container {
+                width: 110px;
+                height: 110px;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .quote {
+                font-size: 0.95rem;
+                padding: 1.25rem 0.75rem;
+                border-left-width: 1px;
+                border-right-width: 1px;
+            }
+
+            .concept-card {
+                padding: 1.25rem;
+            }
+
+            .insight-box {
+                padding: 1rem;
+                font-size: 0.9em;
+            }
+
+            .correspondence-table th,
+            .correspondence-table td {
+                padding: 0.6rem 0.4rem;
+                font-size: 0.78rem;
+            }
+
+            .bagua-box h4 {
+                font-size: 1rem;
+            }
+
+            .inline-hanzi .hanzi-char {
+                font-size: 1em;
+            }
+
+            footer {
+                font-size: 0.82rem;
+                padding: 2rem 1rem;
+            }
+
+            .practice-section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        .bagua-box {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid var(--line-color);
+        }
+
+        .bagua-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .bagua-box h4 {
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        .wuxing-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .wuxing-container svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .correspondence-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .correspondence-table th,
+        .correspondence-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--line-color);
+            font-weight: 400;
+        }
+
+        .correspondence-table th {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-color);
+            background: var(--table-header-bg);
+        }
+
+        .correspondence-table tr:hover {
+            background: var(--table-hover-bg);
+        }
+
+        .practice-section {
+            background: linear-gradient(to bottom, var(--practice-bg-start), var(--bg-color));
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-top: 1px solid var(--line-color);
+            border-bottom: 1px solid var(--line-color);
+        }
+
+        .practice-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--line-color);
+            margin-top: 6rem;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            border-left: 2px solid var(--accent-color);
+            border-right: 2px solid var(--accent-color);
+            background: var(--quote-bg);
+        }
+
+        .quote .hanzi {
+            display: block;
+            margin-top: 1rem;
+            font-size: 0.9em;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .meridian-flow {
+            stroke-dasharray: 5,5;
+            animation: flow 20s linear infinite;
+        }
+
+        @keyframes flow {
+            to { stroke-dashoffset: -100; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .meridian-flow {
+                animation: none;
+            }
+        }
+
+        .yin-yang-small {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin: 0 0.5rem;
+        }
+        
+        .insight-box {
+            background: var(--insight-bg);
+            border-left: 3px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .insight-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .extended-table {
+            font-size: 0.85rem;
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+<button id="theme-toggle" title="Alternar modo claro/escuro" aria-label="Alternar tema">🌙</button>
+
+<header>
+    <div class="taichi-container">
+        <svg viewBox="0 0 200 200">
+            <defs>
+                <clipPath id="circleClip">
+                    <circle cx="100" cy="100" r="98"/>
+                </clipPath>
+                <style>
+                    .tai-dark { fill: var(--svg-taiji-dark); }
+                    .tai-light { fill: var(--svg-taiji-light); }
+                    .tai-stroke { fill: none; stroke: var(--svg-taiji-dark); }
+                </style>
+            </defs>
+            <g clip-path="url(#circleClip)">
+                <path d="M100,2 A49,49 0 0,1 100,98 A49,49 0 0,0 100,198 A98,98 0 0,1 100,2" class="tai-dark"/>
+                <path d="M100,2 A98,98 0 0,1 100,198 A49,49 0 0,1 100,98 A49,49 0 0,0 100,2" class="tai-light"/>
+            </g>
+        </svg>
+    </div>
+    <h1>
+        <span class="hanzi" style="font-size: 0.7em; display: block; margin-bottom: 0.5rem;">道</span>
+        TAO
+    </h1>
+    <div class="subtitle">A Grande Via • O Princípio Originário</div>
+    <div class="divider"></div>
+    <p style="max-width: 600px; text-align: center; font-size: 1.1rem; color: var(--text-light);">
+        <span class="inline-hanzi"><span class="hanzi-char">无极</span><span class="pinyin-text">Wújí</span></span> 
+        gera 
+        <span class="inline-hanzi"><span class="hanzi-char">太极</span><span class="pinyin-text">Tàijí</span></span>, 
+        <span class="inline-hanzi"><span class="hanzi-char">太极</span><span class="pinyin-text">Tàijí</span></span> 
+        gera 
+        <span class="inline-hanzi"><span class="hanzi-char">两仪</span><span class="pinyin-text">Liǎngyí</span></span>
+    </p>
+</header>
+
+<div class="line-separator"></div>
+
+<section>
+    <h2>
+        Taiji
+        <span class="hanzi">太极</span>
+        <span class="pinyin">Supremo Último</span>
+    </h2>
+    <p>
+        O <span class="inline-hanzi"><span class="hanzi-char">太极</span><span class="pinyin-text">Tàijí</span></span> 
+        representa o estado primordial do universo, anterior à diferenciação. Do 
+        <span class="inline-hanzi"><span class="hanzi-char">无极</span><span class="pinyin-text">Wújí</span></span> 
+        (O Sem Limite, o vazio absoluto) emerge o movimento primordial, a primeira vibração que contém em potência todas as dualidades. 
+        É o ponto onde o não-ser e o ser se tocam, representado pelo círculo perfeito que engloba todos os fenômenos.
+    </p>
+    <div class="quote">
+        "O Tao que pode ser expresso não é o Tao eterno. O nome que pode ser nomeado não é o nome eterno. O não-ser é o princípio do céu e da terra. O ser é a mãe das dez mil coisas."
+        <span class="hanzi">道可道，非常道</span>
+    </div>
+    <p>
+        Nesta fase, a energia 
+        <span class="inline-hanzi"><span class="hanzi-char">气</span><span class="pinyin-text">Qì</span></span> 
+        ainda não se diferenciou em Yin e Yang, mas contém em potência ambas as qualidades. É o campo unificado da existência, 
+        análogo ao vácuo quântico na física moderna — aparentemente vazio, mas repleto de potencialidades infinitas.
+    </p>
+    <div class="insight-box">
+        <p>O conceito de Taiji é fundamental para a escola neoconfucionista, especialmente em Zhu Xi (1130-1200), que o via como o princípio organizador (Li, 理) que emerge do Wuji. Em termos práticos, o Taiji é experimentado na meditação como o estado anterior ao pensamento — um ponto de quietude onde a respiração se estabiliza e a mente permanece alerta mas vazia. Neste estado, o praticante toca o "campo elétrico" da existência, onde todas as possibilidades ainda não se diferenciaram.</p>
+    </div>
+    <p>
+        A relação entre Taiji e Wu Xing é dialética: enquanto o Taiji é o círculo que contém todos os movimentos, os Cinco Elementos são as fases visíveis desse movimento. Na prática do Taiji Quan, o corpo inteiro deve atuar como um Taiji vivo — cada articulação é um pequeno círculo, e o movimento total é a manifestação harmônica da intenção (Yi, 意) sem esforço bruto.
+    </p>
+</section>
+
+<div class="line-separator"></div>
+
+<section>
+    <h2>
+        Yin Yang
+        <span class="hanzi">阴阳</span>
+        <span class="pinyin">Liang Yi — Duas Formas</span>
+    </h2>
+    <p>
+        Do movimento do Taiji emerge a diferenciação primordial: 
+        <span class="inline-hanzi"><span class="hanzi-char">阴</span><span class="pinyin-text">Yīn</span></span> 
+        e 
+        <span class="inline-hanzi"><span class="hanzi-char">阳</span><span class="pinyin-text">Yáng</span></span>, 
+        os dois aspectos complementares de toda realidade. Yin representa o princípio receptivo, escuro, feminino, terrestre; 
+        Yang representa o princípio ativo, luminoso, masculino, celestial.
+    </p>
+
+    <div class="diagram-container">
+        <svg width="300" height="300" viewBox="0 0 300 300" style="max-width: 100%; height: auto;">
+            <circle cx="150" cy="150" r="147" fill="none" stroke="var(--accent-color)" stroke-width="1" opacity="0.5"/>
+            <!-- Metade escura (Yin) — sempre preta -->
+            <path d="M150,3 A73.5,73.5 0 0,1 150,147 A73.5,73.5 0 0,0 150,297 A147,147 0 0,1 150,3" fill="#1a1a1a"/>
+            <!-- Metade clara (Yang) — sempre branca/creme -->
+            <path d="M150,3 A147,147 0 0,1 150,297 A73.5,73.5 0 0,1 150,147 A73.5,73.5 0 0,0 150,3" fill="#f0ede4"/>
+            <!-- Embrião yang: ponto claro no campo escuro (topo) -->
+            <circle cx="150" cy="76.5" r="13" fill="#f0ede4"/>
+            <!-- Embrião yin: ponto escuro no campo claro (base) -->
+            <circle cx="150" cy="223.5" r="13" fill="#1a1a1a"/>
+            <!-- Rótulo 阳 — no campo claro, tinta escura, lado direito -->
+            <text x="270" y="105" text-anchor="middle" font-family="Noto Serif SC" font-size="18" fill="#1a1a1a" font-weight="600">阳</text>
+            <text x="270" y="120" text-anchor="middle" font-family="Noto Sans SC" font-size="8" fill="#1a1a1a" opacity="0.6">YÁNG</text>
+            <!-- Rótulo 阴 — no campo escuro, tinta clara fixa, lado esquerdo -->
+            <text x="30" y="195" text-anchor="middle" font-family="Noto Serif SC" font-size="18" fill="#f0ede4" font-weight="600">阴</text>
+            <text x="30" y="210" text-anchor="middle" font-family="Noto Sans SC" font-size="8" fill="#f0ede4" opacity="0.7">YĪN</text>
+        </svg>
+    </div>
+
+    <div class="insight-box">
+        <p>A medicina chinesa diagnostica desequilíbrios como excesso (shi, 实) ou deficiência (xu, 虚) de Yin ou Yang. Por exemplo, febre, insônia e agitação indicam excesso de Yang; cansaço, frio nas extremidades e apatia indicam deficiência de Yang. O tratamento busca restaurar a homeostase dinâmica — não um equilíbrio estático, mas uma dança onde ora Yin predomina, ora Yang, sempre dentro de um espectro saudável.</p>
+    </div>
+
+    <div class="concept-grid">
+        <div class="concept-card">
+            <h4>Yin <span class="hanzi">阴</span></h4>
+            <p>Terra • Lua • Escuridão • Feminino • Receptivo • Substantivo • Interior • Inverno • Norte</p>
+        </div>
+        <div class="concept-card">
+            <h4>Yang <span class="hanzi">阳</span></h4>
+            <p>Céu • Sol • Luz • Masculino • Ativo • Verbo • Exterior • Verão • Sul</p>
+        </div>
+    </div>
+
+    <p>
+        O símbolo revela verdades fundamentais: cada extremo contém a semente do oposto (os pequenos círculos); 
+        não há linha reta divisória, mas uma curva sinusoidal que sugere fluxo contínuo; e a totalidade forma um círculo perfeito, 
+        indicando que ambos são aspectos de uma unidade maior.
+    </p>
+    <p>
+        No I Ching (Yijing), as linhas quebradas (-- --) representam Yin e as linhas contínuas (-----) representam Yang. A interação destas linhas em grupos de três forma os oito trigramas, e em grupos de seis forma os 64 hexagramas. Cada mudança de uma linha para outra representa uma mutação no fluxo cósmico — o "instante" onde o potencial se torna atual.
+    </p>
+</section>
+
+<div class="line-separator"></div>
+
+<section>
+    <h2>
+        Bagua
+        <span class="hanzi">八卦</span>
+        <span class="pinyin">Oito Trigramas</span>
+    </h2>
+    <p>
+        A interação dinâmica do Yin e Yang gera quatro combinações ( 
+        <span class="inline-hanzi"><span class="hanzi-char">四象</span><span class="pinyin-text">Sìxiàng</span></span> ), 
+        que por sua vez se subdividem em oito trigramas ( 
+        <span class="inline-hanzi"><span class="hanzi-char">八卦</span><span class="pinyin-text">Bāguà</span></span> ), 
+        representando todas as possíveis manifestações do movimento cósmico.
+    </p>
+
+    <div class="bagua-comparison">
+        <div class="bagua-box">
+            <h4>
+                Céu Anterior
+                <div class="hanzi">先天八卦</div>
+                <div class="pinyin">Xiāntiān Bāguà</div>
+            </h4>
+            <svg width="200" height="200" viewBox="0 0 200 200" style="max-width: 100%; height: auto;">
+                <circle cx="100" cy="100" r="95" fill="none" stroke="var(--accent-color)" stroke-width="1"/>
+                <circle cx="100" cy="100" r="85" fill="none" stroke="var(--line-color)" stroke-width="0.5"/>
+                <g transform="translate(100, 25)">
+                    <rect x="-8" y="0" width="16" height="2" fill="var(--svg-text)"/>
+                    <rect x="-8" y="5" width="16" height="2" fill="var(--svg-text)"/>
+                    <rect x="-8" y="10" width="16" height="2" fill="var(--svg-text)"/>
+                    <text y="25" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="var(--svg-text)">乾</text>
+                </g>
+                <g transform="translate(100, 175)">
+                    <rect x="-8" y="0" width="16" height="2" fill="var(--svg-text)"/>
+                    <rect x="-3" y="5" width="6" height="2" fill="var(--svg-text)"/>
+                    <rect x="-8" y="10" width="16" height="2" fill="var(--svg-text)"/>
+                    <rect x="-3" y="15" width="6" height="2" fill="var(--svg-text)"/>
+                    <rect x="-8" y="20" width="16" height="2" fill="var(--svg-text)"/>
+                    <rect x="-3" y="25" width="6" height="2" fill="var(--svg-text)"/>
+                    <text y="-5" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="var(--svg-text)">坤</text>
+                </g>
+                <g transform="translate(175, 100)">
+                    <rect x="0" y="-8" width="2" height="16" fill="var(--svg-text)" transform="rotate(90)"/>
+                    <rect x="0" y="-3" width="2" height="6" fill="var(--svg-text)" transform="rotate(90)"/>
+                    <rect x="0" y="2" width="2" height="16" fill="var(--svg-text)" transform="rotate(90)"/>
+                    <text x="20" y="4" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="var(--svg-text)">离</text>
+                </g>
+                <g transform="translate(25, 100)">
+                    <rect x="0" y="-8" width="2" height="16" fill="var(--svg-text)" transform="rotate(90)"/>
+                    <rect x="0" y="-3" width="2" height="6" fill="var(--svg-text)" transform="rotate(90)"/>
+                    <rect x="0" y="2" width="2" height="16" fill="var(--svg-text)" transform="rotate(90)"/>
+                    <text x="-20" y="4" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="var(--svg-text)">坎</text>
+                </g>
+                <g transform="translate(150, 50)">
+                    <rect x="-6" y="-1" width="12" height="2" fill="var(--svg-text)"/>
+                    <rect x="-6" y="4" width="12" height="2" fill="var(--svg-text)"/>
+                    <rect x="-2" y="9" width="4" height="2" fill="var(--svg-text)"/>
+                    <text x="0" y="25" text-anchor="middle" font-family="Noto Serif SC" font-size="10" fill="var(--svg-text)">震</text>
+                </g>
+                <g transform="translate(50, 150)">
+                    <rect x="-6" y="-1" width="12" height="2" fill="var(--svg-text)"/>
+                    <rect x="-2" y="4" width="4" height="2" fill="var(--svg-text)"/>
+                    <rect x="-6" y="9" width="12" height="2" fill="var(--svg-text)"/>
+                    <text x="0" y="-10" text-anchor="middle" font-family="Noto Serif SC" font-size="10" fill="var(--svg-text)">巽</text>
+                </g>
+                <g transform="translate(50, 50)">
+                    <rect x="-6" y="-1" width="12" height="2" fill="var(--svg-text)"/>
+                    <rect x="-6" y="4" width="12" height="2" fill="var(--svg-text)"/>
+                    <rect x="-2" y="9" width="4" height="2" fill="var(--svg-text)"/>
+                    <text x="0" y="25" text-anchor="middle" font-family="Noto Serif SC" font-size="10" fill="var(--svg-text)">艮</text>
+                </g>
+                <g transform="translate(150, 150)">
+                    <rect x="-6" y="-1" width="12" height="2" fill="var(--svg-text)"/>
+                    <rect x="-2" y="4" width="4" height="2" fill="var(--svg-text)"/>
+                    <rect x="-6" y="9" width="12" height="2" fill="var(--svg-text)"/>
+                    <text x="0" y="-10" text-anchor="middle" font-family="Noto Serif SC" font-size="10" fill="var(--svg-text)">兑</text>
+                </g>
+                <text x="100" y="100" text-anchor="middle" font-family="Noto Serif SC" font-size="14" fill="var(--accent-color)" font-weight="600">先天</text>
+            </svg>
+            <p style="font-size: 0.9rem; margin-top: 1rem; color: var(--text-light);">
+                Arranjo de Fu Xi • Cosmológico • Estático • Representa a estrutura ideal do universo
+            </p>
+        </div>
+        <div class="bagua-box">
+            <h4>
+                Céu Posterior
+                <div class="hanzi">后天八卦</div>
+                <div class="pinyin">Hòutiān Bāguà</div>
+            </h4>
+            <svg width="200" height="200" viewBox="0 0 200 200" style="max-width: 100%; height: auto;">
+                <rect x="5" y="5" width="190" height="190" fill="none" stroke="var(--accent-color)" stroke-width="1"/>
+                <g transform="translate(100, 40)">
+                    <line x1="-8" y1="0" x2="8" y2="0" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-8" y1="5" x2="8" y2="5" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-3" y1="10" x2="3" y2="10" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <text y="25" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="var(--svg-text)">离</text>
+                </g>
+                <g transform="translate(100, 160)">
+                    <line x1="-8" y1="0" x2="8" y2="0" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-3" y1="5" x2="3" y2="5" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-8" y1="10" x2="8" y2="10" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <text y="25" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="var(--svg-text)">坎</text>
+                </g>
+                <g transform="translate(160, 100)">
+                    <line x1="0" y1="-8" x2="0" y2="8" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="5" y1="-8" x2="5" y2="8" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="10" y1="-3" x2="10" y2="3" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <text x="20" y="4" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="var(--svg-text)">震</text>
+                </g>
+                <g transform="translate(40, 100)">
+                    <line x1="0" y1="-8" x2="0" y2="8" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="5" y1="-3" x2="5" y2="3" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="10" y1="-8" x2="10" y2="8" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <text x="-20" y="4" text-anchor="middle" font-family="Noto Serif SC" font-size="12" fill="var(--svg-text)">兑</text>
+                </g>
+                <g transform="translate(145, 55)">
+                    <line x1="-6" y1="0" x2="6" y2="0" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-6" y1="6" x2="6" y2="6" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-2" y1="12" x2="2" y2="12" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <text y="25" text-anchor="middle" font-family="Noto Serif SC" font-size="10" fill="var(--svg-text)">巽</text>
+                </g>
+                <g transform="translate(55, 55)">
+                    <line x1="-6" y1="0" x2="6" y2="0" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-6" y1="6" x2="6" y2="6" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-6" y1="12" x2="6" y2="12" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <text y="25" text-anchor="middle" font-family="Noto Serif SC" font-size="10" fill="var(--svg-text)">乾</text>
+                </g>
+                <g transform="translate(55, 145)">
+                    <line x1="-6" y1="0" x2="6" y2="0" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-2" y1="6" x2="2" y2="6" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-6" y1="12" x2="6" y2="12" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-2" y1="18" x2="2" y2="18" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <text y="-10" text-anchor="middle" font-family="Noto Serif SC" font-size="10" fill="var(--svg-text)">坤</text>
+                </g>
+                <g transform="translate(145, 145)">
+                    <line x1="-6" y1="0" x2="6" y2="0" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-6" y1="6" x2="6" y2="6" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <line x1="-2" y1="12" x2="2" y2="12" stroke="var(--svg-stroke)" stroke-width="2"/>
+                    <text y="-10" text-anchor="middle" font-family="Noto Serif SC" font-size="10" fill="var(--svg-text)">艮</text>
+                </g>
+                <text x="100" y="100" text-anchor="middle" font-family="Noto Serif SC" font-size="14" fill="var(--accent-color)" font-weight="600">后天</text>
+            </svg>
+            <p style="font-size: 0.9rem; margin-top: 1rem; color: var(--text-light);">
+                Arranjo de King Wen • Temporal • Dinâmico • Representa fluxos de energia no mundo manifesto
+            </p>
+        </div>
+    </div>
+
+    <div class="insight-box">
+        <p>O Céu Anterior é frequentemente comparado ao DNA do universo: uma sequência matemática perfeita onde os opostos se equilibram. Qian (Céu) e Kun (Terra) são pai e mãe; os outros seis trigramas são seus filhos (Zhen, Kan, Gen como filhos; Xun, Li, Dui como filhas). Este arranjo é usado no Feng Shui da tumba (Yin Zhai, 阴宅), pois lida com energias que transcendem o tempo linear.</p>
+    </div>
+    <p>
+        O <strong>Céu Anterior</strong> ( 
+        <span class="inline-hanzi"><span class="hanzi-char">先天</span><span class="pinyin-text">Xiāntiān</span></span> ) 
+        representa o estado primordial, o padrão cosmológico puro antes da manifestação física. 
+        É associado a Fu Xi e reflete a estrutura matemática perfeita do universo: opostos diametricamente opostos 
+        (Qian ☰ opõe-se a Kun ☷, Li ☲ opõe-se a Kan ☵).
+    </p>
+    <div class="insight-box">
+        <p>O Céu Posterior, por outro lado, é o mapa do mundo vivido. Rei Wen o organizou segundo o ciclo das estações e a sucessão dinástica. Li (Fogo) ao Sul representa o verão e o clímax do Yang; Kan (Água) ao Norte representa o inverno e o ápice do Yin. Este arranjo é usado no Feng Shui da residência (Yang Zhai, 阳宅) e na navegação marítima tradicional chinesa, pois considera o fluxo sazonal e diário do Qi.</p>
+    </div>
+    <p>
+        O <strong>Céu Posterior</strong> ( 
+        <span class="inline-hanzi"><span class="hanzi-char">后天</span><span class="pinyin-text">Hòutiān</span></span> ) 
+        representa o mundo pós-manifestação, os fluxos de energia 
+        <span class="inline-hanzi"><span class="hanzi-char">气</span><span class="pinyin-text">Qì</span></span> 
+        no tempo e espaço. 
+        Associado ao Rei Wen, mostra como as energias se movem e transformam no mundo fenomenológico, sendo fundamental 
+        para feng shui, astrologia chinesa e medicina.
+    </p>
+</section>
+
+<div class="line-separator"></div>
+
+<section>
+    <h2>
+        Wu Xing
+        <span class="hanzi">五行</span>
+        <span class="pinyin">Cinco Movimentos</span>
+    </h2>
+    <p>
+        Os Cinco Elementos ou Cinco Movimentos ( 
+        <span class="inline-hanzi"><span class="hanzi-char">五行</span><span class="pinyin-text">Wǔxíng</span></span> ) 
+        — Madeira, Fogo, Terra, Metal e Água — não são substâncias estáticas, mas 
+        <em>fases de transformação</em> energética. Representam os cinco estágios do ciclo cósmico de geração e destruição, 
+        de ascensão e descida.
+    </p>
+
+    <div class="diagram-container" style="position: relative; min-height: 420px;">
+        <div class="wuxing-container">
+            <svg width="400" height="400" viewBox="0 0 400 400" style="max-width: 100%; height: auto;">
+                <polygon points="200,50 340,150 290,320 110,320 60,150" fill="none" stroke="var(--line-color)" stroke-width="1"/>
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="var(--accent-color)" />
+                    </marker>
+                </defs>
+                <path d="M 200,50 Q 270,100 340,150" fill="none" stroke="var(--wood)" stroke-width="1.5" marker-end="url(#arrowhead)" stroke-dasharray="4,2"/>
+                <path d="M 340,150 Q 315,235 290,320" fill="none" stroke="var(--fire)" stroke-width="1.5" marker-end="url(#arrowhead)" stroke-dasharray="4,2"/>
+                <path d="M 290,320 Q 200,320 110,320" fill="none" stroke="var(--earth)" stroke-width="1.5" marker-end="url(#arrowhead)" stroke-dasharray="4,2"/>
+                <path d="M 110,320 Q 85,235 60,150" fill="none" stroke="var(--metal)" stroke-width="1.5" marker-end="url(#arrowhead)" stroke-dasharray="4,2"/>
+                <path d="M 60,150 Q 130,100 200,50" fill="none" stroke="var(--water)" stroke-width="1.5" marker-end="url(#arrowhead)" stroke-dasharray="4,2"/>
+                <line x1="200" y1="50" x2="290" y2="320" stroke="var(--fire)" stroke-width="1" opacity="0.4"/>
+                <line x1="290" y1="320" x2="60" y2="150" stroke="var(--metal)" stroke-width="1" opacity="0.4"/>
+                <line x1="60" y1="150" x2="340" y2="150" stroke="var(--earth)" stroke-width="1" opacity="0.4"/>
+                <line x1="340" y1="150" x2="110" y2="320" stroke="var(--water)" stroke-width="1" opacity="0.4"/>
+                <line x1="110" y1="320" x2="200" y2="50" stroke="var(--wood)" stroke-width="1" opacity="0.4"/>
+                <text x="200" y="35" text-anchor="middle" font-family="Noto Serif SC" font-size="20" fill="var(--wood)" font-weight="600">木</text>
+                <text x="200" y="20" text-anchor="middle" font-family="Noto Sans SC" font-size="9" fill="var(--wood)">MADEIRA</text>
+                <text x="360" y="155" text-anchor="middle" font-family="Noto Serif SC" font-size="20" fill="var(--fire)" font-weight="600">火</text>
+                <text x="360" y="170" text-anchor="middle" font-family="Noto Sans SC" font-size="9" fill="var(--fire)">FOGO</text>
+                <text x="305" y="345" text-anchor="middle" font-family="Noto Serif SC" font-size="20" fill="var(--earth)" font-weight="600">土</text>
+                <text x="305" y="360" text-anchor="middle" font-family="Noto Sans SC" font-size="9" fill="var(--earth)">TERRA</text>
+                <text x="95" y="345" text-anchor="middle" font-family="Noto Serif SC" font-size="20" fill="var(--metal)" font-weight="600">金</text>
+                <text x="95" y="360" text-anchor="middle" font-family="Noto Sans SC" font-size="9" fill="var(--metal)">METAL</text>
+                <text x="40" y="155" text-anchor="middle" font-family="Noto Serif SC" font-size="20" fill="var(--water)" font-weight="600">水</text>
+                <text x="40" y="170" text-anchor="middle" font-family="Noto Sans SC" font-size="9" fill="var(--water)">ÁGUA</text>
+                <text x="200" y="200" text-anchor="middle" font-family="Noto Serif SC" font-size="16" fill="var(--accent-color)">相生</text>
+                <text x="200" y="215" text-anchor="middle" font-family="Noto Sans SC" font-size="8" fill="var(--accent-color)">GERAÇÃO</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="concept-grid">
+        <div class="concept-card">
+            <h4 style="color: var(--wood);">Ciclo de Geração <span class="hanzi">相生</span></h4>
+            <p>Madeira gera Fogo (queima)<br>
+            Fogo gera Terra (cinzas)<br>
+            Terra gera Metal (minerais)<br>
+            Metal gera Água (condensação)<br>
+            Água gera Madeira (nutrição)</p>
+        </div>
+        <div class="concept-card">
+            <h4 style="color: var(--fire);">Ciclo de Controle <span class="hanzi">相克</span></h4>
+            <p>Madeira controla Terra (raízes)<br>
+            Terra controla Água (absorve)<br>
+            Água controla Fogo (extingue)<br>
+            Fogo controla Metal (derrete)<br>
+            Metal controla Madeira (corta)</p>
+        </div>
+    </div>
+
+    <div class="insight-box">
+        <p>Além dos ciclos de geração (生, Sheng) e controle (克, Ke), existe o ciclo de "insulto" ou "desarmonia" (侮, Wu), onde um elemento fraco é oprimido por aquele que normalmente controlaria, ou onde um elemento excessivo agride aquele que o gera. Por exemplo: se a Madeira (Fígado) está excessiva, ela não apenas controla a Terra (Baço) demais, mas também "insulta" o Metal (Pulmão), que normalmente a controlaria. Este conceito é crucial no diagnóstico de padrões complexos na MTC.</p>
+    </div>
+
+    <table class="correspondence-table">
+        <thead>
+            <tr><th>Elemento</th><th>Órgão Yin (Zang)</th><th>Órgão Yang (Fu)</th><th>Estação</th><th>Direção</th><th>Cor</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="hanzi">木</span> Madeira</td><td>Fígado (肝)</td><td>Vesícula Biliar (胆)</td><td>Primavera</td><td>Leste</td><td>Verde</td></tr>
+            <tr><td><span class="hanzi">火</span> Fogo</td><td>Coração (心)</td><td>Intestino Delgado (小肠)</td><td>Verão</td><td>Sul</td><td>Vermelho</td></tr>
+            <tr><td><span class="hanzi">土</span> Terra</td><td>Baço (脾)</td><td>Estômago (胃)</td><td>Intermediário</td><td>Centro</td><td>Amarelo</td></tr>
+            <tr><td><span class="hanzi">金</span> Metal</td><td>Pulmão (肺)</td><td>Intestino Grosso (大肠)</td><td>Outono</td><td>Oeste</td><td>Branco</td></tr>
+            <tr><td><span class="hanzi">水</span> Água</td><td>Rim (肾)</td><td>Bexiga (膀胱)</td><td>Inverno</td><td>Norte</td><td>Preto/Azul</td></tr>
+        </tbody>
+    </table>
+
+    <div class="insight-box">
+        <p><strong>Além dos órgãos e estações, os Cinco Elementos se estendem a:</strong><br>
+        • <strong>Emoções:</strong> Raiva (Madeira), Alegria (Fogo), Preocupação (Terra), Tristeza (Metal), Medo (Água).<br>
+        • <strong>Tecidos corporais:</strong> Tendões (Madeira), Vasos sanguíneos (Fogo), Músculos (Terra), Pele e pelos (Metal), Ossos (Água).<br>
+        • <strong>Sabores:</strong> Azedo (Madeira), Amargo (Fogo), Doce (Terra), Picante (Metal), Salgado (Água).<br>
+        • <strong>Planetas:</strong> Júpiter (Madeira), Marte (Fogo), Saturno (Terra), Vênus (Metal), Mercúrio (Água).</p>
+        <p style="margin-top: 1rem;">Na prática clínica, um terapeuta pode escolher tratar um desequilíbrio do Rim (Água) não diretamente, mas fortalecendo o Pulmão (Metal) que gera a Água, ou acalmando o Baço (Terra) que a água controla. Esta abordagem indireta é a essência do pensamento sistêmico chinês.</p>
+    </div>
+</section>
+
+<div class="line-separator"></div>
+
+<section>
+    <h2>
+        Taoísmo Filosófico e Religioso
+        <span class="hanzi">道家与道教</span>
+        <span class="pinyin">Dàojiā yǔ Dàojiào</span>
+    </h2>
+    <p>
+        É importante distinguir o Taoísmo Filosófico (Daojia, 道家) do Taoísmo Religioso (Daojiao, 道教). O primeiro, baseado no Tao Te Ching (道德经) de Laozi e no Zhuangzi (庄子), enfatiza a simplicidade, a espontaneidade (ziran, 自然) e a não-ação (wuwei, 无为). O segundo desenvolveu-se a partir da dinastia Han, incorporando rituais de purificação, alquimia interna (neidan, 内丹), imortalidade (xian, 仙) e um panteão complexo liderado pelo Imperador de Jade (玉皇大帝).
+    </p>
+    <p>
+        Os princípios cosmográficos deste artigo (Taiji, Yin-Yang, Bagua, Wu Xing) são <strong>comuns a ambas as tradições</strong>, mas com ênfases diferentes: o Taoísmo filosófico os usa como metáforas para a vida ética; o Taoísmo religioso os usa como tecnologias espirituais para a transcendência.
+    </p>
+</section>
+
+<div class="line-separator"></div>
+
+<section>
+    <h2>
+        Aplicações
+        <span class="hanzi">应用</span>
+        <span class="pinyin">Yìngyòng</span>
+    </h2>
+    <h3>I Ching <span class="hanzi">易经</span></h3>
+    <p>
+        O Livro das Mutações é o texto fundador baseado nos trigramas. Cada hexagrama (combinação de dois trigramas) 
+        representa uma situação do fluxo cósmico. O Céu Anterior fornece a estrutura essencial; o Céu Posterior fornece 
+        as transformações temporais. Juntos, formam um sistema de consulta oracular que mapeia as 64 situações básicas 
+        da experiência humana.
+    </p>
+    <h3>Medicina Tradicional Chinesa <span class="hanzi">中医</span></h3>
+    <p>
+        A MTC utiliza predominantemente o <strong>Céu Posterior</strong> para diagnóstico, pois trata do corpo manifesto. 
+        Os meridianos são canais de fluxo do 
+        <span class="inline-hanzi"><span class="hanzi-char">气</span><span class="pinyin-text">Qì</span></span>, 
+        organizados segundo os Cinco Elementos. O pulso diagnosticado em seis posições (cun, guan, chi em ambos os pulsos) 
+        reflete o estado dos órgãos-zang.
+    </p>
+    <div class="diagram-container">
+        <svg width="500" height="300" viewBox="0 0 500 300" style="max-width: 100%; height: auto;">
+            <path d="M 100,150 Q 150,100 200,150 T 300,150 T 400,150" fill="none" stroke="var(--water)" stroke-width="2" class="meridian-flow"/>
+            <path d="M 100,180 Q 150,130 200,180 T 300,180 T 400,180" fill="none" stroke="var(--wood)" stroke-width="2" class="meridian-flow" style="animation-delay: 0.5s"/>
+            <path d="M 100,120 Q 150,70 200,120 T 300,120 T 400,120" fill="none" stroke="var(--fire)" stroke-width="2" class="meridian-flow" style="animation-delay: 1s"/>
+            <text x="250" y="50" text-anchor="middle" font-family="Noto Serif SC" font-size="16" fill="var(--svg-text)">经络系统</text>
+            <text x="250" y="70" text-anchor="middle" font-family="Noto Sans SC" font-size="10" fill="var(--accent-color)">SISTEMA DE MERIDIANOS</text>
+            <circle cx="150" cy="135" r="4" fill="var(--water)"/>
+            <circle cx="250" cy="135" r="4" fill="var(--wood)"/>
+            <circle cx="350" cy="135" r="4" fill="var(--fire)"/>
+            <text x="150" y="160" text-anchor="middle" font-size="9" fill="var(--text-light)">Yin</text>
+            <text x="250" y="160" text-anchor="middle" font-size="9" fill="var(--text-light)">Yuan</text>
+            <text x="350" y="160" text-anchor="middle" font-size="9" fill="var(--text-light)">Yang</text>
+        </svg>
+    </div>
+    <h3>Culinária <span class="hanzi">食</span></h3>
+    <p>
+        A dietética taoísta classifica alimentos pelos Cinco Elementos e sua natureza térmica (fria, neutra, quente). 
+        O sabor associado a cada elemento (azedo-Madeira, amargo-Fogo, doce-Terra, picante-Metal, salgado-Água) 
+        direciona-se a órgãos específicos. A cozinha busca o equilíbrio dos ciclos de geração e controle através 
+        da combinação de cores, sabores e métodos de preparo.
+    </p>
+    <h3>Música <span class="hanzi">乐</span></h3>
+    <p>
+        A escala pentatônica chinesa (宫商角徵羽 - 
+        <span class="inline-hanzi"><span class="hanzi-char">宫</span><span class="pinyin-text">Gōng</span></span>, 
+        <span class="inline-hanzi"><span class="hanzi-char">商</span><span class="pinyin-text">Shāng</span></span>, 
+        <span class="inline-hanzi"><span class="hanzi-char">角</span><span class="pinyin-text">Jué</span></span>, 
+        <span class="inline-hanzi"><span class="hanzi-char">徵</span><span class="pinyin-text">Zhǐ</span></span>, 
+        <span class="inline-hanzi"><span class="hanzi-char">羽</span><span class="pinyin-text">Yǔ</span></span> ) 
+        corresponde aos Cinco Elementos. Cada tom ressoa com um órgão específico, sendo utilizado em terapias sonoras 
+        para harmonizar o fluxo energético.
+    </p>
+    <h3>Política e Governo <span class="hanzi">政治</span></h3>
+    <p>
+        A filosofia política taoísta advoga o 
+        <span class="inline-hanzi"><span class="hanzi-char">无为</span><span class="pinyin-text">Wúwéi</span></span> 
+        (não-ação forçada), onde o governante harmoniza-se com o fluxo natural das coisas, como o Céu Posterior 
+        segue o padrão do Céu Anterior sem forçá-lo. O imperador ideal posiciona-se no Centro (Terra), recebendo 
+        influências de todas as direções sem se mover.
+    </p>
+</section>
+
+<div class="practice-section">
+    <div class="practice-content">
+        <h2>
+            Práticas Corporais
+            <span class="hanzi">功法</span>
+            <span class="pinyin">Gōngfǎ</span>
+        </h2>
+        <p>
+            As artes internas ( 
+            <span class="inline-hanzi"><span class="hanzi-char">内家</span><span class="pinyin-text">Nèijiā</span></span> ) 
+            aplicam estes princípios cosmográficos no corpo humano, visto como microcosmo do universo 
+            ( 
+            <span class="inline-hanzi"><span class="hanzi-char">天人合一</span><span class="pinyin-text">Tiānrénhéyī</span></span> ).
+        </p>
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h4>Qigong <span class="hanzi">气功</span></h4>
+                <p>Cultivo da energia vital através de posturas estáticas ( 
+                <span class="inline-hanzi"><span class="hanzi-char">桩</span><span class="pinyin-text">Zhuāng</span></span> ), 
+                movimentos fluidos e regulação da respiração. Busca acumular 
+                <span class="inline-hanzi"><span class="hanzi-char">气</span><span class="pinyin-text">Qì</span></span> 
+                no 
+                <span class="inline-hanzi"><span class="hanzi-char">丹田</span><span class="pinyin-text">Dāntián</span></span> 
+                (centro energético) e circulá-la pelos meridianos.</p>
+            </div>
+            <div class="concept-card">
+                <h4>Taiji Quan <span class="hanzi">太极拳</span></h4>
+                <p>Boxe do Supremo Último. Movimento contínuo que externaliza o diagrama do Taiji. 
+                Baseia-se na alternância de Yin (receber, absorver) e Yang (emitir, projetar), 
+                utilizando a escuta energética ( 
+                <span class="inline-hanzi"><span class="hanzi-char">听劲</span><span class="pinyin-text">Tīngjìn</span></span> ) 
+                para harmonizar com o oponente.</p>
+            </div>
+        </div>
+        <div class="insight-box">
+            <p>A alquimia interna (Neidan, 内丹) é o coração esotérico do Taoísmo religioso. Ela mapeia o corpo como um forno alquímico: o Ding (鼎, tripé) é o corpo; o Yao (药, medicamento) é o Jing (精, essência), Qi (气, energia) e Shen (神, espírito); o Huo (火, fogo) é a intenção consciente (Yi). O praticante refina Jing em Qi, Qi em Shen, e Shen retorna ao Vazio (Xu, 虚). As três passagens principais (Weilu, Jiaji, Yuzhen) correspondem a três "portões" nas costas que devem ser abertos pela circulação do Qi no Pequeno Circuito Celestial (Xiao Zhou Tian, 小周天).</p>
+        </div>
+        <div class="quote">
+            "O corpo é o universo; o universo é o corpo. 
+            A respiração é o fluxo; o fluxo é a respiração."
+            <span class="hanzi">身即宇宙，息即造化</span>
+        </div>
+        <p>
+            Na prática, o praticante posiciona-se no centro do bagua (Terra), movendo-se segundo as oito direções 
+            dos trigramas. Os cinco passos fundamentais (avançar, recuar, olhar para esquerda, observar direita, 
+            centralizar) correspondem aos Cinco Elementos. Cada movimento do Taiji Quan é uma meditação em movimento, 
+            onde o intelecto cede lugar à percepção direta ( 
+            <span class="inline-hanzi"><span class="hanzi-char">神</span><span class="pinyin-text">Shén</span></span> ).
+        </p>
+        <div class="insight-box">
+            <p><strong>Um exercício prático para iniciantes:</strong> Sente-se ereto, toque o céu da boca com a língua (conectando os meridianos Ren e Du), coloque as mãos sobre o baixo ventre (Dantian inferior, 下丹田) e respire naturalmente. Ao inspirar, visualize um brilho dourado subindo pela coluna até o topo da cabeça. Ao expirar, visualize este brilho descendo pela frente do corpo de volta ao Dantian. Faça isso por 5-10 minutos diários. Isso é o início do cultivo do "elixir interno".</p>
+        </div>
+    </div>
+</div>
+
+<section>
+    <h2>
+        A Unidade
+        <span class="hanzi">合一</span>
+        <span class="pinyin">Héyī</span>
+    </h2>
+    <p>
+        Do Wuji ao Taiji, deste aos dois aspectos (Yin-Yang), aos quatro símbolos, aos oito trigramas e dez mil coisas; 
+        dos cinco elementos aos meridianos, da música à política, das artes marciais à culinária — tudo converge para 
+        uma mesma compreensão: o universo é um fluxo contínuo de transformação, e a sabedoria reside em harmonizar-se 
+        com este fluxo, não em dominá-lo.
+    </p>
+    <div class="insight-box">
+        <p>A unidade (Héyī) não é um estado estático a ser alcançado, mas um reconhecimento do que sempre foi. O Zhuangzi diz: "O Céu, a Terra e eu vivemos juntos; todas as coisas e eu somos um." Na prática, isso significa que ao comer, você é a comida; ao caminhar, você é o chão; ao respirar, você é o vento. A separação entre sujeito e objeto é uma ilusão útil para a sobrevivência, mas a ilusão dissolve-se na experiência direta do Taiji vivo.</p>
+    </div>
+    <div class="diagram-container" style="padding: 4rem;">
+        <svg width="400" height="100" viewBox="0 0 400 100" style="max-width: 100%; height: auto;">
+            <text x="200" y="50" text-anchor="middle" font-family="Noto Serif SC" font-size="48" fill="var(--svg-text)" opacity="0.2">道</text>
+            <text x="200" y="85" text-anchor="middle" font-family="Cormorant Garamond" font-size="14" fill="var(--accent-color)" letter-spacing="0.3em">O CAMINHO É UM</text>
+        </svg>
+    </div>
+    <p style="text-align: center; font-style: italic; margin-top: 4rem;">
+        "Retornar é o movimento do Tao.<br>
+        Suavizar é a sua aplicação.<br>
+        Todas as coisas do mundo têm sua origem.<br>
+        Esta origem é a mãe de todas as coisas."
+    </p>
+    <p style="text-align: center; font-family: 'Noto Serif SC', serif; color: var(--accent-color); margin-top: 1rem;">
+        反者道之动，弱者道之用
+    </p>
+    <div class="insight-box" style="margin-top: 3rem;">
+        <p>Que este pequeno guia sirva como um mapa, não como o território. Os diagramas e palavras são apenas os dedos apontando para a lua. A verdadeira compreensão do Tao não está em memorizar correspondências ou decorar nomes, mas em sentar-se em silêncio, mover-se com fluidez, e viver de tal forma que cada ação — por mais mundana que seja — seja uma expressão do fluxo sem esforço. O caminho está aberto. Basta dar o primeiro passo.</p>
+    </div>
+</section>
+
+<footer>
+    <div class="divider"></div>
+    <p>通幽洞微 • Compreender o profundo e penetrar o sutil</p>
+    <p style="font-size: 0.8rem; margin-top: 1rem;">
+        As representações seguem tradições clássicas da escola Taoísta e Confucionista<br>
+        Bagua: Fu Xi (先天) e King Wen (后天) | Wu Xing: Ciclo cosmico tradicional
+    </p>
+</footer>
+
+<script>
+    (function() {
+        const btn = document.getElementById('theme-toggle');
+        const root = document.documentElement;
+
+        // Restore saved preference
+        const saved = localStorage.getItem('tao-theme');
+        if (saved === 'dark') {
+            root.setAttribute('data-theme', 'dark');
+            btn.textContent = '☀️';
+        }
+
+        btn.addEventListener('click', function() {
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                root.removeAttribute('data-theme');
+                btn.textContent = '🌙';
+                localStorage.setItem('tao-theme', 'light');
+            } else {
+                root.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️';
+                localStorage.setItem('tao-theme', 'dark');
+            }
+        });
+    })();
+</script>
+
+</body>
+</html>
