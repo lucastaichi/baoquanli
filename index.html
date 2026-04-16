@@ -898,6 +898,17 @@
 function abrirModalTao() {
   document.getElementById('modal-tao').style.display = 'block';
   document.body.style.overflow = 'hidden';
+  // Sincroniza tema atual ao abrir
+  const iframe = document.getElementById('tao-iframe');
+  const isDark = document.documentElement.classList.contains('dark');
+  // Aguarda o iframe carregar antes de enviar
+  iframe.onload = function() {
+    iframe.contentWindow.postMessage({ type: 'bql-theme', dark: isDark }, '*');
+  };
+  // Se já carregado, envia direto
+  try {
+    iframe.contentWindow.postMessage({ type: 'bql-theme', dark: isDark }, '*');
+  } catch(e) {}
 }
 function fecharModalTao() {
   document.getElementById('modal-tao').style.display = 'none';
@@ -953,7 +964,13 @@ document.addEventListener('keydown', function(e) {
 <script>
   function toggleTheme() {
     document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    // Sincroniza tema com o iframe do Tao
+    const iframe = document.getElementById('tao-iframe');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'bql-theme', dark: isDark }, '*');
+    }
   }
   (function() {
     if (localStorage.getItem('theme') === 'dark') {
