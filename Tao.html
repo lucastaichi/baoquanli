@@ -1168,18 +1168,7 @@
     </p>
 </footer>
 
-<script>
-    // Recebe mensagem de tema do index.html pai
-    window.addEventListener('message', function(e) {
-        if (e.data && e.data.type === 'bql-theme') {
-            if (e.data.dark) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-            }
-        }
-    });
-</script>
+
 
 </body>
 </html>
