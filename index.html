@@ -783,7 +783,22 @@
   <div class="info-item">
     <p class="info-label">AMORAN</p>
     <p class="info-value">Rua Itapema, 162<br>Anchieta, BH/MG</p>
-    <p class="info-sub" style="margin-top:14px">Horários em breve</p>
+    <p class="info-sub" style="margin-top:14px">
+      Terças e sextas — sede da AMORAN<br>9h45 às 10h45
+    </p>
+    <p class="info-sub" style="margin-top:10px; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+      <span>Quartas — Parque Julien Rien — 9h45 às 10h45</span>
+      <button
+        class="tooltip-trigger"
+        aria-label="Informação sobre aula de quarta"
+        onclick="toggleTooltipAmoran(event)"
+      >ⓘ</button>
+    </p>
+    <!-- Tooltip / popover -->
+    <div id="tooltip-amoran" class="tooltip-amoran" role="tooltip" aria-live="polite">
+      <button class="tooltip-close" onclick="fecharTooltipAmoran()" aria-label="Fechar">×</button>
+      <p><strong>Em caso de chuva</strong>, a aula de quarta é transferida para <strong>quinta-feira</strong> na sede da AMORAN.</p>
+    </div>
   </div>
   <div class="info-item">
     <p class="info-label">Inscrições</p>
@@ -884,6 +899,74 @@
 </div>
 
 <style>
+/* ── TOOLTIP AMORAN ── */
+.tooltip-trigger {
+  background: none;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.tooltip-trigger:hover,
+.tooltip-trigger:focus {
+  background: var(--gold);
+  color: var(--paper);
+  outline: none;
+}
+.tooltip-amoran {
+  display: none;
+  position: relative;
+  margin-top: 10px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 2px;
+  padding: 12px 36px 12px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  animation: tooltipIn 0.22s ease;
+}
+.tooltip-amoran strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+.tooltip-amoran.open {
+  display: block;
+}
+.tooltip-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1;
+  padding: 2px 4px;
+  transition: color 0.2s;
+}
+.tooltip-close:hover { color: var(--red); }
+.dark .tooltip-amoran {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+}
+@keyframes tooltipIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes fadeInModal {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -895,6 +978,22 @@
 </style>
 
 <script>
+function toggleTooltipAmoran(e) {
+  e.stopPropagation();
+  const t = document.getElementById('tooltip-amoran');
+  t.classList.toggle('open');
+}
+function fecharTooltipAmoran() {
+  document.getElementById('tooltip-amoran').classList.remove('open');
+}
+// Fechar tooltip ao clicar fora
+document.addEventListener('click', function(e) {
+  const t = document.getElementById('tooltip-amoran');
+  if (t && t.classList.contains('open') && !t.contains(e.target)) {
+    fecharTooltipAmoran();
+  }
+});
+
 function sincronizarTemaTao() {
   const iframe = document.getElementById('tao-iframe');
   if (!iframe || !iframe.contentDocument) return;
